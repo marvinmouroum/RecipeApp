@@ -33,6 +33,7 @@
 		DE9FDA7D24DA80E500BBCEC5 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA7724DA80E500BBCEC5 /* Recipe+CoreDataProperties.swift */; };
 		DE9FDA7E24DA80E500BBCEC5 /* RecipeContent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA7824DA80E500BBCEC5 /* RecipeContent+CoreDataClass.swift */; };
 		DE9FDA7F24DA80E500BBCEC5 /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA7924DA80E500BBCEC5 /* Recipe+CoreDataClass.swift */; };
+		DE9FDA8124DAFBC100BBCEC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA8024DAFBC100BBCEC5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		DE9FDA7724DA80E500BBCEC5 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DE9FDA7824DA80E500BBCEC5 /* RecipeContent+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipeContent+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DE9FDA7924DA80E500BBCEC5 /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DE9FDA8024DAFBC100BBCEC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E42A0F9F8935BFC96257E23A /* Pods-RecipeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipeApp.debug.xcconfig"; path = "Target Support Files/Pods-RecipeApp/Pods-RecipeApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				DE0D558D24D70D96002BA8D0 /* CrossButton.swift */,
 				DE0D55B424D74BDF002BA8D0 /* RecipeTableViewCell.swift */,
 				DE9FDA7124D984EF00BBCEC5 /* AddButton.swift */,
+				DE9FDA8024DAFBC100BBCEC5 /* Extensions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9FDA8124DAFBC100BBCEC5 /* Extensions.swift in Sources */,
 				DE9FDA7D24DA80E500BBCEC5 /* Recipe+CoreDataProperties.swift in Sources */,
 				DE9FDA7B24DA80E500BBCEC5 /* RecipeImages+CoreDataProperties.swift in Sources */,
 				DE0D555624D6AA19002BA8D0 /* MainViewController.swift in Sources */,

@@ -38,10 +38,7 @@ class RecipeStandardViewController: UIViewController {
         
         //create new layout constraints
         self.view.addSubview(label)
-        label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        (label as! TitleLabel).layout(self.view)
         
         
     }
@@ -65,12 +62,9 @@ class RecipeStandardViewController: UIViewController {
         //deletes old layout constraints
         button.removeFromSuperview()
         
-        //create new layout constraints
+        //layout the button
         self.view.addSubview(button)
-        button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20).isActive = true
-        button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03).isActive = true
-        button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
+        button.layoutStandardButton(self.view)
         
     }
     

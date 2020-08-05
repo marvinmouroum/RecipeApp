@@ -29,6 +29,13 @@ class TitleLabel: UILabel {
         }
     }
     
+    func layout(_ view:UIView){
+        self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        self.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03).isActive = true
+        self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
