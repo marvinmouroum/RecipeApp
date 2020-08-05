@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import NotificationCenter
 
+//using an external library
+//https://github.com/mikaoj/BSImagePicker
+import BSImagePicker
+
 class AddRecipeViewModel:NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
