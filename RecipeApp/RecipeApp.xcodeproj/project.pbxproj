@@ -120,6 +120,7 @@
 		DE0D555024D6AA19002BA8D0 /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				DE9FDA8224DB059300BBCEC5 /* Service */,
 				DE9FDA7324DA230800BBCEC5 /* ViewController */,
 				DE0D557824D6AF29002BA8D0 /* ViewModel */,
 				DE0D557524D6AE88002BA8D0 /* View */,
@@ -138,7 +139,6 @@
 		DE0D556824D6AC91002BA8D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DE0D557B24D6B248002BA8D0 /* CoreAPI.swift */,
 				DE9FDA7924DA80E500BBCEC5 /* Recipe+CoreDataClass.swift */,
 				DE9FDA7724DA80E500BBCEC5 /* Recipe+CoreDataProperties.swift */,
 				DE9FDA7824DA80E500BBCEC5 /* RecipeContent+CoreDataClass.swift */,
@@ -181,6 +181,14 @@
 				DE0D557F24D6ED19002BA8D0 /* RecipeStandardViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE9FDA8224DB059300BBCEC5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DE0D557B24D6B248002BA8D0 /* CoreAPI.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
