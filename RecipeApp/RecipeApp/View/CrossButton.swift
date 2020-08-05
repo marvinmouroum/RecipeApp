@@ -1,5 +1,5 @@
 //
-//  PlusButton.swift
+//  CrossButton.swift
 //  RecipeApp
 //
 //  Created by Marvin Mouroum on 02.08.20.
@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+*This button class is a custom drawn button,
+*I am drawing this button because it has a custom design
+*NOTE: This design is simplified*
+*/
 class CrossButton: UIButton {
 
     

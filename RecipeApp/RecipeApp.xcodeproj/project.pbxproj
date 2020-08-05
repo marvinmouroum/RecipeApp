@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,6 @@
 		DE0D556124D6AA21002BA8D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0D555F24D6AA21002BA8D0 /* LaunchScreen.storyboard */; };
 		DE0D557A24D6AF3C002BA8D0 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D557924D6AF3C002BA8D0 /* TableViewModel.swift */; };
 		DE0D557C24D6B248002BA8D0 /* CoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D557B24D6B248002BA8D0 /* CoreAPI.swift */; };
-		DE0D557E24D6B798002BA8D0 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D557D24D6B798002BA8D0 /* PlusButton.swift */; };
 		DE0D558024D6ED19002BA8D0 /* RecipeStandardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D557F24D6ED19002BA8D0 /* RecipeStandardViewController.swift */; };
 		DE0D558224D6F341002BA8D0 /* AddRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D558124D6F341002BA8D0 /* AddRecipeViewModel.swift */; };
 		DE0D558424D6FB3C002BA8D0 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0D558324D6FB3C002BA8D0 /* AddRecipeViewController.swift */; };
@@ -50,7 +49,6 @@
 		DE0D556224D6AA21002BA8D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE0D557924D6AF3C002BA8D0 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		DE0D557B24D6B248002BA8D0 /* CoreAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAPI.swift; sourceTree = "<group>"; };
-		DE0D557D24D6B798002BA8D0 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		DE0D557F24D6ED19002BA8D0 /* RecipeStandardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStandardViewController.swift; sourceTree = "<group>"; };
 		DE0D558124D6F341002BA8D0 /* AddRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewModel.swift; sourceTree = "<group>"; };
 		DE0D558324D6FB3C002BA8D0 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				E42A0F9F8935BFC96257E23A /* Pods-RecipeApp.debug.xcconfig */,
 				BC515E7399027F65D6E47ABA /* Pods-RecipeApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -153,7 +150,6 @@
 		DE0D557524D6AE88002BA8D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE0D557D24D6B798002BA8D0 /* PlusButton.swift */,
 				DE0D558524D70640002BA8D0 /* TitleLabel.swift */,
 				DE0D558724D707BD002BA8D0 /* InformationLabel.swift */,
 				DE0D558924D709B6002BA8D0 /* ImageContainer.swift */,
@@ -319,7 +315,6 @@
 				DE9FDA7E24DA80E500BBCEC5 /* RecipeContent+CoreDataClass.swift in Sources */,
 				DE9FDA7224D984EF00BBCEC5 /* AddButton.swift in Sources */,
 				DE9FDA7F24DA80E500BBCEC5 /* Recipe+CoreDataClass.swift in Sources */,
-				DE0D557E24D6B798002BA8D0 /* PlusButton.swift in Sources */,
 				DE0D558224D6F341002BA8D0 /* AddRecipeViewModel.swift in Sources */,
 				DE0D558624D70640002BA8D0 /* TitleLabel.swift in Sources */,
 			);

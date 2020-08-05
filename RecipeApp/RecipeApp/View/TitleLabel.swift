@@ -17,6 +17,7 @@ class TitleLabel: UILabel {
         self.textColor = UIColor.label
         self.adjustsFontSizeToFitWidth = true
         self.textAlignment = .center
+        self.font = UIFont.boldSystemFont(ofSize: 20)
         
         switch type {
         case .plus:

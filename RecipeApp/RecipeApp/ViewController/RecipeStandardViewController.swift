@@ -50,7 +50,8 @@ class RecipeStandardViewController: UIViewController {
         
         switch type {
         case .plus:
-            button = PlusButton()
+            button = UIButton(type: .contactAdd)
+            button.tintColor = UIColor.label
             break
         case .disk:
             button = UIButton()
