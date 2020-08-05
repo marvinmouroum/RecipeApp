@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES">
+        <attribute name="title" attributeType="String"/>
+        <relationship name="contentRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipeContent" inverseName="recipeRelation" inverseEntity="RecipeContent"/>
+        <relationship name="imageRelation" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RecipeImages" inverseName="recipeRelation" inverseEntity="RecipeImages"/>
+    </entity>
+    <entity name="RecipeContent" representedClassName="RecipeContent" syncable="YES">
+        <attribute name="data" attributeType="String"/>
+        <relationship name="recipeRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="contentRelation" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="RecipeImages" representedClassName="RecipeImages" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="test" optional="YES" attributeType="String"/>
+        <relationship name="recipeRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="imageRelation" inverseEntity="Recipe"/>
+    </entity>
+    <elements>
+        <element name="Recipe" positionX="-52.82421875" positionY="-299.25390625" width="128" height="88"/>
+        <element name="RecipeContent" positionX="166.14453125" positionY="-113.59375" width="128" height="73"/>
+        <element name="RecipeImages" positionX="-54" positionY="18" width="128" height="88"/>
+    </elements>
+</model>
