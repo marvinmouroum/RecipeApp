@@ -11,10 +11,10 @@ import UIKit
 class AddRecipeViewController: RecipeStandardViewController {
     
     // MARK: - initializers
-    init(){
+    init(_ recipe:Recipe? = nil){
         
         if let appDel = UIApplication.shared.delegate as? AppDelegate {
-            viewModel = AddRecipeViewModel(appDel)
+            viewModel = AddRecipeViewModel(appDel,recipe)
             super.init(nibName: nil, bundle: nil)
             viewModel.viewcontroller = self
             view.backgroundColor = UIColor.systemBackground
@@ -67,7 +67,7 @@ class AddRecipeViewController: RecipeStandardViewController {
         _ = viewModel.addImageContainer(to: self.view, with: titleStack.bottomAnchor)
     }
     
-    override func buttonPressed() {
+    override func buttonPressed(_ sender:Any?) {
         
         guard let alert:UIAlertController = viewModel.saveRecipe() else{
             self.dismiss(animated: true, completion: nil)

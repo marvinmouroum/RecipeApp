@@ -71,14 +71,20 @@ class AddRecipeViewModel:NSObject {
      *initalizes the AddRecipeViewModel*
      - Parameters:
      *     - Parameter appdel: the appDelegate reference for accessing the persistent storage
+     *     - Parameter recipe: a recipe object for editing a recipe
      */
-    init(_ appdel:AppDelegate) {
+    init(_ appdel:AppDelegate, _ recipe:Recipe? = nil) {
         
         self.appDel = appdel
+        self.recipe = recipe
         
         super.init()
         //adding the button for adding images
         self.imageContainer.addButton.addTarget(self, action: #selector(presentImagePicker), for: .touchUpInside)
+        
+        if recipe != nil {
+            loadRecipe()
+        }
     }
     
     ///assignes a title to the recipe object
@@ -89,6 +95,12 @@ class AddRecipeViewModel:NSObject {
     ///assignes objects  to the recipe content relation,
     ///each recipe has a one to many content relationship
     private func setDescriptionContent(){
+        
+        // delete the and rewrite it
+        if let existingSet = recipe?.contentRelation {
+            recipe?.removeFromContentRelation(existingSet)
+        }
+        
         let content = self.descriptionTextField.text.components(separatedBy: "\n")
         for item in content {
             let recipeContent = CoreAPI.createRecipeContent(self.appDel,item)
@@ -127,8 +139,10 @@ class AddRecipeViewModel:NSObject {
             return alert
         }
         
-        //create the NSManagedObject
-        self.recipe = CoreAPI.createEmptyRecipe(appDelegate: appDel)
+        //create the NSManagedObject if its nil
+        if self.recipe == nil {
+            self.recipe = CoreAPI.createEmptyRecipe(appDelegate: appDel)
+        }
         
         //assign values
         setTitle()
@@ -154,6 +168,24 @@ class AddRecipeViewModel:NSObject {
         
         return nil
         
+    }
+    
+    ///loads the info about recipes into the view
+    func loadRecipe(){
+        self.titleTextField.text = self.recipe?.title
+        if let arraycontent = self.recipe?.contentRelation?.array as? [RecipeContent] {
+       
+                let stringarray = arraycontent.map({ (content) -> String in
+                    content.data ?? ""
+                })
+                self.descriptionTextField.text = stringarray.joined(separator: "\n")
+                
+            
+        }
+        
+        self.images = (recipe?.imageRelation?.array as? [RecipeImages])!
+        reloadData()
+
     }
     
     func addTitle(to view:UIView,with topAnchor:NSLayoutYAxisAnchor)->UIView{
@@ -234,8 +266,16 @@ class AddRecipeViewModel:NSObject {
             // User canceled selection.
         }, finish: { (assets) in
             // User finished selection assets.
-            //remove all images
-            self.images.removeAll()
+            //remove all images for new recipe, store count for edit recipe
+            var count = 0
+            if self.recipe == nil{
+                //for support editing
+                self.images.removeAll()
+            }
+            else{
+                count = self.images.count
+            }
+            
             //processing this on another thread for better user experience
             DispatchQueue.global(qos: .userInitiated).async {
                 
@@ -247,7 +287,7 @@ class AddRecipeViewModel:NSObject {
                         //create a NSManagedObject
                         let recipeImage:RecipeImages = CoreAPI.createRecipeImage(self.appDel, data)
                         //store the reference
-                        if(self.images.count < assets.count){
+                        if(self.images.count < assets.count + count){
                             //This if statement is necessary because for some unknown reason the scope is called twice
                             self.images.append(recipeImage)
                         }

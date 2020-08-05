@@ -51,6 +51,8 @@ class TableViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
     ///the recipes to showcase
     private var recipes:[Recipe] = []
     
+    private(set) var recipe:Recipe?
+    
     ///loading data from Core and update the tableview
     ///can be used in parallel processing, is thread save
     private func reloadData(_ appDelegate:AppDelegate? = nil){
@@ -73,6 +75,11 @@ class TableViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
         }
         
+    }
+    
+    func deselect(){
+        guard let index = tableView.indexPathForSelectedRow else {return}
+        tableView.deselectRow(at:index , animated: true)
     }
     
     ///observer method for new recipe created notifications
@@ -130,7 +137,14 @@ class TableViewModel: NSObject, UITableViewDataSource, UITableViewDelegate {
             }
             
         }
+
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.recipe = self.recipes[indexPath.row]
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "Edit"), object: self, userInfo: nil)
+    }
+    
     
     // MARK: - Delegate Methods
     

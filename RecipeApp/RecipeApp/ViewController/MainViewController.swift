@@ -21,17 +21,22 @@ class MainViewController: RecipeStandardViewController {
         
         //add an observer for a new recipe creation
         NotificationCenter.default.addObserver(table, selector: #selector(TableViewModel.recipeAdded), name: Notification.Name("NewRecipe"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buttonPressed), name: Notification.Name("Edit"), object: nil)
     
     }
     
     
-    @objc override func buttonPressed() {
-        let vc = AddRecipeViewController()
+    @objc override func buttonPressed(_ sender:Any?) {
+       
+        self.table.deselect()
+        
+        let model = sender as? NSNotification
+        let viewmodel = model?.object as? TableViewModel
+        
+        let vc = AddRecipeViewController(viewmodel?.recipe)
         if vc.successfullInit {
             present(vc, animated: true, completion: nil)
         }
-    
-        
     }
     
 
