@@ -13,8 +13,10 @@ import NotificationCenter
 //using an external library
 //https://github.com/mikaoj/BSImagePicker
 import BSImagePicker
+import Photos
 
-class AddRecipeViewModel:NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//the class inherits from NSObject so it is @objc enabled
+class AddRecipeViewModel:NSObject {
     
 
     ///The recipe object remains nil until the save button is pressed*
@@ -54,6 +56,8 @@ class AddRecipeViewModel:NSObject, UIImagePickerControllerDelegate, UINavigation
     ///AppDelegate reference for easier access
     fileprivate var appDel:AppDelegate
     
+    let imagePicker = ImagePickerController()
+    
     ///stackview that is used for the input elements and the labels
     private var stack:UIStackView {
         let stack = UIStackView()
@@ -71,9 +75,8 @@ class AddRecipeViewModel:NSObject, UIImagePickerControllerDelegate, UINavigation
     init(_ appdel:AppDelegate) {
         
         self.appDel = appdel
-            
-        super.init()
         
+        super.init()
         //adding the button for adding images
         self.imageContainer.addButton.addTarget(self, action: #selector(presentImagePicker), for: .touchUpInside)
     }
@@ -223,42 +226,40 @@ class AddRecipeViewModel:NSObject, UIImagePickerControllerDelegate, UINavigation
     
     ///present the imagepickercontroller
     @objc func presentImagePicker(){
-        print("adding an Image")
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.allowsEditing = false
+        viewcontroller?.presentImagePicker(self.imagePicker, select: { (asset) in
+            // User selected an asset. Do something with it. Perhaps begin processing/upload?
+        }, deselect: { (asset) in
+            // User deselected an asset. Cancel whatever you did when asset was selected.
+        }, cancel: { (assets) in
+            // User canceled selection.
+        }, finish: { (assets) in
+            // User finished selection assets.
+            //remove all images
+            self.images.removeAll()
+            //processing this on another thread for better user experience
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                for asset in assets {
+                    PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { (image, info) in
+                        //take the image
+                        let fetchedImage = image ?? UIImage(named: "brokenImage")
+                        guard let data = fetchedImage?.pngData() else {return}
+                        //create a NSManagedObject
+                        let recipeImage:RecipeImages = CoreAPI.createRecipeImage(self.appDel, data)
+                        //store the reference
+                        if(self.images.count < assets.count){
+                            //This if statement is necessary because for some unknown reason the scope is called twice
+                            self.images.append(recipeImage)
+                        }
+                    }
+                }
+                DispatchQueue.main.async {
+                    //reload the data once the processing is done
+                    self.reloadData()
+                }
+            }
             
-            viewcontroller?.present(imagePicker, animated: true)
-        }
-    }
-    
-    ///react to the selected image
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        //get the image (NS)URL
-        let image = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
-        
-        do {
-            //load the data from the location
-            let data = try Data(contentsOf: image as URL)
-            //create a NSManagedObject
-            let recipeImage:RecipeImages = CoreAPI.createRecipeImage(self.appDel, data)
-            //store the reference
-            self.images.append(recipeImage)
-            //reload table data
-            self.reloadData()
-            
-        }catch {
-            print("Error while picking image")
-        }
-        
-        //close the picker
-        picker.dismiss(animated: false){
-            self.reloadData()
-        }
-        
+        })
     }
     
     @objc func removeImage(_ sender:UIButton){
