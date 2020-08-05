@@ -28,11 +28,14 @@ class MainViewController: RecipeStandardViewController {
     
     @objc override func buttonPressed(_ sender:Any?) {
        
+        //deselect the row
         self.table.deselect()
         
+        //check the sender
         let model = sender as? NSNotification
         let viewmodel = model?.object as? TableViewModel
         
+        //start the new view controller
         let vc = AddRecipeViewController(viewmodel?.recipe)
         if vc.successfullInit {
             present(vc, animated: true, completion: nil)
